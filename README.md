@@ -49,7 +49,12 @@ instructions on how to download and install git for your environment.
 
 For example, you can clone this repo using the command:
 
-   git clone <path to repo>
+```sh
+   git clone git@github.com:ssinari/reproduce-analysis.git
+```
+
+or by downloading the ZIP file from [here](https://github.com/ssinari/reproduce-analysis/archive/master.zip)
+
 
 ## Step 4: Initiate the docker environment
 
