@@ -35,7 +35,7 @@ distribution of Linux.
 
 ## Step 1: Install docker
 
-Go to this [webpage](https://docs.docker.com/v17.12/install/#server) and click
+Go to this [webpage](https://docs.docker.com/v17.12/install) and click
 on the link to get docker for your operating system. The link takes you to a
 page that contains links to software download as well as operating system
 specific instructions for installation. 
