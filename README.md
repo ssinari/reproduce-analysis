@@ -61,7 +61,7 @@ Similarly you may clone other project repos.
 ## Step 4: Initiate the docker environment
 
 To initiate the docker container use the run script `run.sh`. The script pulls
-the appropraite docker image and initiates the container. When using images with
+the appropriate docker image and initiates the container. When using images with
 RStudio, one more step is required. Point your browser, example Chrome, to
 http://localhost:8787. The number 8787 is the port number at which the RStudio
 IDE is rendered. The username and password for login are `rstudio` and `rstudio`
