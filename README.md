@@ -56,7 +56,7 @@ For example, you can clone this repo using the command:
 To initiate the docker container use the run script `run.sh`. The script pulls
 the appropraite docker image and initiates the container. When using images with
 RStudio, one more step is required. Open a browser such as Chrome and type
-`localhost:8787`. The number 8787 is the port number at which the RStudio is
+`localhost:8787`. The number 8787 is the port number at which the RStudio IDE is
 rendered. The username and password for login are `rstudio` and `rstudio`
 respectively.
 
