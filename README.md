@@ -53,7 +53,9 @@ For example, you can clone this repo using the command:
    git clone git@github.com:ssinari/reproduce-analysis.git
 ```
 
-or by downloading the ZIP file from [here](https://github.com/ssinari/reproduce-analysis/archive/master.zip).
+or by downloading the ZIP file from
+[here](https://github.com/ssinari/reproduce-analysis/archive/master.zip).
+Similarly you may clone other project repos.
 
 
 ## Step 4: Initiate the docker environment
