@@ -71,25 +71,33 @@ and
 
 change to the results folder:
 
+```sh
     cd project/results
+```
 
 Initiate R:
 
+```sh
     R
+```
 
 use the command:
 
+```R
     rmarkdown::render(file = "path to the rmarkdown document",
                       output_file = "name of the output report",
                       output_dir = ".")
-
+```
 
 - starting in R session:
 
+```R
     setwd("project/results")
+
     rmarkdown::render(file = "path to the rmarkdown document",
                           output_file = "name of the output report",
                           output_dir = ".")
+```
 
 - starting in RStudio:
 
