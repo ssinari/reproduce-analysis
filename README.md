@@ -95,8 +95,8 @@ use the command:
     setwd("project/results")
 
     rmarkdown::render(file = "path to the rmarkdown document",
-                          output_file = "name of the output report",
-                          output_dir = ".")
+                      output_file = "name of the output report",
+                      output_dir = ".")
 ```
 
 - starting in RStudio:
