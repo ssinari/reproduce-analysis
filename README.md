@@ -60,9 +60,9 @@ or by downloading the ZIP file from [here](https://github.com/ssinari/reproduce-
 
 To initiate the docker container use the run script `run.sh`. The script pulls
 the appropraite docker image and initiates the container. When using images with
-RStudio, one more step is required. Open a browser such as Chrome and type
-`localhost:8787`. The number 8787 is the port number at which the RStudio IDE is
-rendered. The username and password for login are `rstudio` and `rstudio`
+RStudio, one more step is required. Point your browser, example Chrome, to
+http://localhost:8787. The number 8787 is the port number at which the RStudio
+IDE is rendered. The username and password for login are `rstudio` and `rstudio`
 respectively.
 
 ## Step 5: Reproduce the analysis
@@ -107,6 +107,6 @@ use the command:
 - starting in RStudio:
 
 Use the GUI to navigate to the rmarkdown file and `knit` it. Then move the file
-to the results folder and rename it if needed.
+to the results folder and rename it, if needed.
 
 # Best practices
