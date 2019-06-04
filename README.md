@@ -72,7 +72,7 @@ folder on user's computer. For example, if the current folder is named
 of `PATH_TO_PROJECT_DIRECTORY` is `/home/USERNAME/reproducibility_project`.
 Relative paths like `../../reproducibility_project` and
 `~USERNAME/reproducibility_project` are not permitted. One way to get the full
-path to any directory in the Unix systems is to use invoke:
+path to any directory in the Unix systems is to invoke the command:
 
 ```sh
 pwd
