@@ -68,8 +68,10 @@ run.sh <PATH_TO_PROJECT_DIRECTORY>
 
 where PATH_TO_PROJECT_DIRECTORY is the full (_not_ relative) path to the project
 folder on user computer. For example, if the current folder is named
-`reproducibility_project` and is located under `/home/USERNAME/` then the value of
-`PATH_TO_PROJECT_DIRECTORY` is `/home/USERNAME/reproducibility_project`.
+`reproducibility_project` and is located under `/home/USERNAME/` then the value
+of `PATH_TO_PROJECT_DIRECTORY` is `/home/USERNAME/reproducibility_project`.
+Relative paths like `../../reproducibility_project` and
+`~USERNAME/reproducibility_project` are not permitted.
 
 The script pulls the appropriate docker image and initiates the container. When
 using images with RStudio, one more step is required. Point your browser,
