@@ -66,8 +66,8 @@ To initiate the docker container use the run script `run.sh`.
 run.sh <PATH_TO_PROJECT_DIRECTORY>
 ```
 
-where PATH_TO_PROJECT_DIRECTORY is the full (_not_ relative) path to the project
-folder on user computer. For example, if the current folder is named
+where PATH_TO_PROJECT_DIRECTORY is the full (**not** relative) path to the project
+folder on user's computer. For example, if the current folder is named
 `reproducibility_project` and is located under `/home/USERNAME/` then the value
 of `PATH_TO_PROJECT_DIRECTORY` is `/home/USERNAME/reproducibility_project`.
 Relative paths like `../../reproducibility_project` and
