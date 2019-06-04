@@ -60,12 +60,22 @@ Similarly you may clone other project repos.
 
 ## Step 4: Initiate the docker environment
 
-To initiate the docker container use the run script `run.sh`. The script pulls
-the appropriate docker image and initiates the container. When using images with
-RStudio, one more step is required. Point your browser, example Chrome, to
-http://localhost:8787. The number 8787 is the port number at which the RStudio
-IDE is rendered. The username and password for login are `rstudio` and `rstudio`
-respectively.
+To initiate the docker container use the run script `run.sh`.
+
+```sh
+run.sh <PATH_TO_PROJECT_DIRECTORY>
+```
+
+where PATH_TO_PROJECT_DIRECTORY is the full (_not_ relative) path to the project
+folder on user computer. For example, if the current folder is named
+`reproducibility_project` and is located under `/home/USERNAME/` then the value of
+`PATH_TO_PROJECT_DIRECTORY` is `/home/USERNAME/reproducibility_project`.
+
+The script pulls the appropriate docker image and initiates the container. When
+using images with RStudio, one more step is required. Point your browser,
+example Chrome, to http://localhost:8787. The number 8787 is the port number at
+which the RStudio IDE is rendered. The username and password for login are
+`rstudio` and `rstudio` respectively.
 
 ## Step 5: Reproduce the analysis
 
