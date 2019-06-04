@@ -71,7 +71,12 @@ folder on user's computer. For example, if the current folder is named
 `reproducibility_project` and is located under `/home/USERNAME/` then the value
 of `PATH_TO_PROJECT_DIRECTORY` is `/home/USERNAME/reproducibility_project`.
 Relative paths like `../../reproducibility_project` and
-`~USERNAME/reproducibility_project` are not permitted.
+`~USERNAME/reproducibility_project` are not permitted. One way to get the full
+path to any directory in the Unix systems is to use invoke:
+
+```sh
+pwd
+```
 
 The script pulls the appropriate docker image and initiates the container. When
 using images with RStudio, one more step is required. Point your browser,
