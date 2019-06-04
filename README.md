@@ -78,7 +78,7 @@ path to any directory in the Unix systems is to use invoke:
 pwd
 ```
 
-The script pulls the appropriate docker image and initiates the container. When
+The script `run.sh` pulls the appropriate docker image and initiates the container. When
 using images with RStudio, one more step is required. Point your browser,
 example Chrome, to http://localhost:8787. The number 8787 is the port number at
 which the RStudio IDE is rendered. The username and password for login are
