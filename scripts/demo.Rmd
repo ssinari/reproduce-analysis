@@ -1,0 +1,84 @@
+---
+title: Demonstration of reproducible research using Docker, knitr and rmarkdown
+author: |-
+    Shripad Sinari\
+    Statistics Consulting Laboratory\
+    BIO5, The University of Arizona \
+    shripad@statlab.bio5.org\
+date: '`r Sys.Date()`'
+header-includes:
+   - \usepackage{pdflscape, booktabs, float, amsmath, amsthm, tcolorbox, array, blkarray, dcolumn}
+output:
+    pdf_document:
+      fig_caption: yes
+      keep_tex: true
+      includes:
+        in_header: header.tex
+urlcolor: blue
+---
+
+# Introduction
+
+This document is used in a demonstration of reproducible research and some
+functionality from the _smisc_ package.
+
+If the docker environment setup has gone correctly and you regenerate this
+report in that environment then your should get a PDF file with the same content
+as the one in results folder named "demo-original-output.pdf". The only
+difference will be the date.
+
+We will use the _iris_ dataset in this example. The smisc package has isolated
+functions from _Hmisc_ that provides a descriptive summary of each column in a
+dataset. A biplot using ggplot2 package is also implemented. For more
+information on smisc, see the [github repo](https://github.com/ssinari/smisc).
+
+# Analysis
+
+We will explain each code chunk here:
+
+1. Load the libraries required for the analysis
+
+```{r ll, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE, results = "hide"}
+library(tidyverse)
+library(smisc)
+```
+
+2. Load the data set stored in a local file.
+
+```{r load_data, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE, results = "hide"}
+iris_local <- read.csv("../data/iris_local.csv")
+```
+
+\clearpage
+
+3. Produce the summary of the data.
+
+```{r iris_summary, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE, results = "asis"}
+summarize(iris_local, "iris")
+```
+
+4. Analyse which variables provide the most distinguishing features of the
+   different species of iris.
+
+```{r pca, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE, results = "hide"}
+pca <- iris_local %>%
+    dplyr::select(-c(ID,Species)) %>%
+    as.matrix() %>%
+    prcomp()
+
+biplot <- PCbiplot(PC = pca
+       , d = iris_local
+       , colors = c("#fc8d59","#ffffbf","#91bfdb")
+       , legend_t = "Species"
+       , varnames = colnames(iris_local)[-grep("ID|Species", colnames(iris_local))]
+       , labels = F
+       , title = "")
+```
+
+\blandscape
+
+```{r biplot, echo = FALSE, eval = TRUE, message=FALSE, warning=FALSE, fig.pos = "H", fig.path='fig/plot-', dev='pdf', fig.ext='pdf', fig.width= 12, fig.height=8, fig.cap = "Biplot of the iris data. Petals (length or width) is the distinguishing feature of an iris species rather than its sepal."}
+biplot
+```
+
+\elandscape

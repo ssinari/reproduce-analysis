@@ -1,0 +1,85 @@
+#!/bin/sh
+
+## Source for most of the bash code:
+## https://github.com/mattbryson/bash-arg-parse/blob/master/arg_parse_example
+
+#abort on error
+set -e
+
+function usage
+{
+    echo "usage: $0 -s [SESSION_TYPE || \"RStudio\"] -p [FULL_PATH_TO_PROJECT || \".\"] -h"
+    echo "   ";
+    echo "  -s | --session           : Type of session: bash or RStudio";
+    echo "  -p | --path              : Path to your project directory";
+    echo "  -h | --help              : This message";
+}
+
+function parse_args
+{
+  # set defaults
+  session="RStudio"
+  path=$(pwd)
+  
+  # positional args
+  args=()
+
+  # named args
+  while [ "$1" != "" ]; do
+      case "$1" in
+          -s | --session )              session="$2";    shift;;
+          -p | --path    )              path="$2"   ;    shift;;
+          -h | --help    )              usage       ;    exit;; # quit and show usage
+          * )                           args+=("$1")     # if no match, add it to the positional args
+      esac
+      shift # move to next kv pair
+  done
+
+  # restore positional args
+  set -- "${args[@]}"
+
+  # set positionals to vars
+  positional_1="${args[0]}"
+  positional_2="${args[1]}"
+
+  # validate required args
+  if [[ -z "${session}" || -z "${path}" ]]; then
+      echo "Invalid arguments"
+      usage
+      exit;
+  fi
+
+}
+
+
+function run
+{
+    parse_args "$@"
+
+    if [ $session = "RStudio" ]
+    then
+	docker build . -t demo:1.0 && \
+	       docker run --rm \
+	       -e PASSWORD="123456" \
+	       -e USERID=$UID \
+	       -e ROOT=TRUE \
+	       -p 8787:8787 \
+	       -v ${path}:/home/rstudio/project \
+	       demo:1.0
+    else
+        docker build --build-arg INTF="base" . -t demo:1.0 && \
+	    docker run --rm \
+		   -e uid=$UID \
+		   -v ${path}:/home/rstudio/project \
+		   -it demo:1.0 \
+		   /bin/bash
+    fi
+
+}
+
+
+
+run "$@";
+
+
+
