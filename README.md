@@ -130,7 +130,7 @@ rename it to "`date`_demo.pdf".
 
 # Best practices
 
-Name the resulting report in the format "<Date>_<ReportName>.pdf". Here <Date>
-is in the format _YYYYMMDD_ and <ReportName> is any alphanumeric identifier. The
+Name the resulting report in the format "`Date`_`ReportName`.pdf". Here `Date`
+is in the format _YYYYMMDD_ and `ReportName` is any alphanumeric identifier. The
 advantages of naming this way is that sorting reports is easy and ability to
 quickly identify the report by the date it was generated.
