@@ -27,7 +27,7 @@ The following are the sub-directories and their content in this layout scheme:
 - results: contains the report and or results of the analysis intended to be
   reproduced.
 
-The top project directory `reproduce-analysis` contains two bash scripts
+The top project directory `reproduce-analysis` contains two bash scripts:
 
  1. compile_rmd: This scripts allows the analyst (username rstudio) to compile a
     rmarkdown document into a report in scripting mode.
@@ -123,6 +123,8 @@ For more flexibity in using this command type:
 run_docker -h
 ```
 
+You can exit this session normally as you would in a terminal using the `exit` command.
+
 - Rstudio interface is also available. Just invoke the following command in the terminal:
 
 ```sh
@@ -130,8 +132,8 @@ run_docker
 ```
 
 then point your browser to the URL http://localhost:8787. Type the username
-`rstudio` and password `123456`. This will land you in an RStudio interface with
-_project_ directory visible under the _Files_. Navigate to `project > scripts`
+`rstudio` and password `123456`. This will land you in an RStudio session with
+`project` directory visible under the _Files_ menu. Navigate to `project > scripts`
 and click to open the document "demo.Rmd". Click `knit` to knit the document
 and then move the resulting report "demo.pdf" to the "results" folder and
 rename it to "`date`_demo.pdf". When finished do `CTRL-C` in the terminal to
