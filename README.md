@@ -1,11 +1,13 @@
 # Introduction
 
-In this document we will go through the steps to reproduce an analysis in a
-project using:
+In this document we will go through the steps to reproduce an analysis recorded
+in the document "demo.Rmd" as a demonstration of reproducibility using:
 
 - docker: to fix the computing environment.
 - rmarkdown: to format the code and text into a document to (re)produce the analysis.
 - knitr: to weave (or knit) the rmarkdown document into a report for clients.
+
+See [TBD](TBD) for more details.
 
 # Project layout
 
@@ -57,75 +59,76 @@ or by downloading the ZIP file from
 [here](https://github.com/ssinari/reproduce-analysis/archive/master.zip).
 Similarly you may clone other project repos.
 
-
-## Step 4: Initiate the docker environment
-
-To initiate the docker container use the run script `run.sh`.
+## Step 4: Go to the cloned directory
 
 ```sh
-run.sh <PATH_TO_PROJECT_DIRECTORY>
+cd reproduce-analysis
 ```
 
-where PATH_TO_PROJECT_DIRECTORY is the full (**not** relative) path to the project
-folder on user's computer. For example, if the current folder is named
-`reproducibility_project` and is located under `/home/USERNAME/` then the value
-of `PATH_TO_PROJECT_DIRECTORY` is `/home/USERNAME/reproducibility_project`.
-Relative paths like `../../reproducibility_project` and
-`~USERNAME/reproducibility_project` are not permitted. One way to get the full
-path to any directory in the Unix systems is to invoke the command:
+## Step 5: Compile demo.Rmd in a scripting style
+
 
 ```sh
-pwd
+./compile_rmd -p $(pwd)
 ```
 
-The script `run.sh` pulls the appropriate docker image and initiates the container. When
-using images with RStudio, one more step is required. Point your browser,
-example Chrome, to http://localhost:8787. The number 8787 is the port number at
-which the RStudio IDE is rendered. The username and password for login are
-`rstudio` and `rstudio` respectively.
-
-## Step 5: Reproduce the analysis
-
-You can now initiate the analysis for reproducing the report of your interest.
-When using R in the terminal, i.e using docker container for terminal based R
-and
-
-- starting in bash shell:
-
-
-change to the results folder:
+This will compile the analysis in rmarkdown to a new report named
+<date>_demo.pdf, where date is in the format _YYYYMMDD_. This report is
+identical to the original one given by "demo-original-output.pdf" except the
+date in the header will be the date of compilation. Look at
 
 ```sh
-    cd project/results
+./compile_rmd -h
 ```
 
-Initiate R:
+for more information on how to use it to compile another Rmd into a report
+located under this project.
+
+## Step 6: Using the docker environment interactively
+
+The report can also be generated more interactively using either terminal based
+R or an RStudio session. The steps below show you how to do this.
+
+- To initiate the docker container with terminal interface to R, run the command:
 
 ```sh
-    R
+run_docker -s ``bash''
 ```
 
-use the command:
+from inside the cloned directory. The command will compile the right docker
+environment and provide a bash terminal. To compile ``demo.Rmd'' and put the
+resulting report in the ``results'' folder underneath the project do:
 
-```R
-    rmarkdown::render(file = "path to the rmarkdown document",
-                      output_file = "name of the output report",
-                      output_dir = ".")
+```sh
+
+R -e ``rmarkdown::render(``/home/rstudio/project/scripts/demo.Rmd'' \
+                         , output_file = ``YYYYMMDD_demo.pdf'' \
+                         , output_dir = ``/home/rstudio/project/results'')''
+
 ```
 
-- starting in R session:
+For more flexibity in using this command type:
 
-```R
-    setwd("project/results")
-
-    rmarkdown::render(file = "path to the rmarkdown document",
-                      output_file = "name of the output report",
-                      output_dir = ".")
+```sh
+run_docker -h
 ```
 
-- starting in RStudio:
+- Rstudio interface is also available. Just invoke the following command in the terminal:
 
-Use the GUI to navigate to the rmarkdown file and `knit` it. Then move the file
-to the results folder and rename it, if needed.
+```sh
+run_docker
+```
+
+then point your browser to the URL http://localhost:8787. Type the username
+`rstudio` and password `123456`. This will land you in an RStudio interface with
+_project_ directory visible under the _Files_. Navigate to `project > scripts`
+and click to open the document ``demo.Rmd''. Click `knit` to knit the document
+and then move the resulting report ``demo.pdf'' to the ``results'' folder and
+rename it to ``<date>_demo.pdf''. 
 
 # Best practices
+
+Name the resulting report in the format "<Date>_<ReportName>.pdf". Here <Date>
+is in the format _YYYYMMDD_ and <ReportName> is any alphanumeric identifier. The
+advantages of naming this way is that sorting reports is easy and ability to
+quickly identify the report by the date it was generated.
