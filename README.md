@@ -126,7 +126,7 @@ then point your browser to the URL http://localhost:8787. Type the username
 _project_ directory visible under the _Files_. Navigate to `project > scripts`
 and click to open the document "demo.Rmd". Click `knit` to knit the document
 and then move the resulting report "demo.pdf" to the "results" folder and
-rename it to `date`"_demo.pdf". 
+rename it to "`date`_demo.pdf". 
 
 # Best practices
 
