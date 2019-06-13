@@ -1,0 +1,75 @@
+#!/bin/bash
+
+## Source for most of the bash code:
+## https://github.com/mattbryson/bash-arg-parse/blob/master/arg_parse_example
+
+#abort on error
+set -e
+
+function usage
+{
+    echo "usage: $0 -p [FULL_PATH_TO_PROJECT || \".\"] -f [PATH_TO_RMD] -h"
+    echo "   ";
+    echo "  -p | --path              : Path to your project directory";
+    echo "  -f | --file              : path to the Rmd file to be compiled";
+    echo "  -h | --help              : This message";
+}
+
+function parse_args
+{
+    # set defaults
+    rmd="scripts/demo.Rmd"
+    path="/home/rstudio/project"
+    
+    # positional args
+    args=()
+
+    # named args
+    while [ "$1" != "" ]; do
+	case "$1" in
+            -p | --path    )              path="$2"   ;    shift;;
+            -f | --file    )              rmd="$2"    ;    shift;;
+            -h | --help    )              usage       ;    exit;; # quit and show usage
+            * )                           args+=("$1")     # if no match, add it to the positional args
+	esac
+	shift # move to next kv pair
+    done
+
+    # restore positional args
+    set -- "${args[@]}"
+
+    # set positionals to vars
+    positional_1="${args[0]}"
+    positional_2="${args[1]}"
+
+    # validate required args
+    if [[ -z "${rmd}" || -z "${path}" ]]; then
+	echo "Invalid arguments"
+	usage
+	exit;
+    fi
+
+}
+
+
+function run
+{
+    parse_args "$@"
+
+    container_path="/home/rstudio/project"
+    rmd=${container_path}/${rmd}
+    outdir=${container_path}/"results"
+    outfile=${container_path}/$(date "+%F" |sed 's;-;;g')_$(basename ${rmd%.*}).pdf
+    CMD="rmarkdown::render(\"${rmd}\", output_file = \"${outfile}\", output_dir = \"${outdir}\")"
+    echo $CMD
+    docker build -f docker/Dockerapp \
+	   ${path} -t demo:1.0 && \
+	docker run --rm \
+	       -e uid=$UID \
+	       -v ${path}:/home/rstudio/project \
+	       -it demo:1.0 "$CMD"
+
+}
+
+
+run "$@";

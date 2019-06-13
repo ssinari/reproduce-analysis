@@ -1,0 +1,3 @@
+FROM ssinari/smisc-base:1.0
+ENTRYPOINT ["R", "-e"]
+
