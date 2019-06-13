@@ -73,7 +73,7 @@ cd reproduce-analysis
 ```
 
 This will compile the analysis in rmarkdown to a new report named
-<date>_demo.pdf, where date is in the format _YYYYMMDD_. This report is
+`date`_demo.pdf, where date is in the format _YYYYMMDD_. This report is
 identical to the original one given by "demo-original-output.pdf" except the
 date in the header will be the date of compilation. Look at
 
@@ -92,12 +92,14 @@ R or an RStudio session. The steps below show you how to do this.
 - To initiate the docker container with terminal interface to R, run the command:
 
 ```sh
+
 run_docker -s ``bash''
+
 ```
 
 from inside the cloned directory. The command will compile the right docker
-environment and provide a bash terminal. To compile ``demo.Rmd'' and put the
-resulting report in the ``results'' folder underneath the project do:
+environment and provide a bash terminal. To compile "demo.Rmd" and place the
+resulting report in the "results" folder underneath the project do:
 
 ```sh
 
@@ -122,9 +124,9 @@ run_docker
 then point your browser to the URL http://localhost:8787. Type the username
 `rstudio` and password `123456`. This will land you in an RStudio interface with
 _project_ directory visible under the _Files_. Navigate to `project > scripts`
-and click to open the document ``demo.Rmd''. Click `knit` to knit the document
-and then move the resulting report ``demo.pdf'' to the ``results'' folder and
-rename it to ``<date>_demo.pdf''. 
+and click to open the document "demo.Rmd". Click `knit` to knit the document
+and then move the resulting report "demo.pdf" to the "results" folder and
+rename it to `date`"_demo.pdf". 
 
 # Best practices
 
