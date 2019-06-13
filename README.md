@@ -17,15 +17,23 @@ simple report.
 
 The following are the sub-directories and their content in this layout scheme:
 
-- docker: contains build and run scripts for the docker environment. The docker
+- docker: contains configuration for the docker environment, i.e. the docker
   file giving the specifications of the image. The container of this image will
   be used as the computing environment for this project.
 - data: contains the data used in the project. Ideally this will be a link to
   the directory containing the original data on the user's computer.
-- scripts: contains the ramrkdown document and other auxillary scripts that may
+- scripts: contains the rmarkdown document and other auxillary scripts that may
   be necessary for reproducing the analysis.
 - results: contains the report and or results of the analysis intended to be
   reproduced.
+
+The top project directory `reproduce-analysis` contains two bash scripts
+
+ 1. compile_rmd: This scripts allows the analyst (username rstudio) to compile a
+    rmarkdown document into a report in scripting mode.
+ 2. run_docker: This script allows the analyst to run R either in terminal
+    interface or an RStudio session and thus interactively reproduce the
+    analysis recorded in "demo.Rmd" or any other rmarkdown document.
 
 # Assumptions
 
