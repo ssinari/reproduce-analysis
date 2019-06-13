@@ -132,5 +132,5 @@ rename it to "`date`_demo.pdf".
 
 Name the resulting report in the format "`Date`_`ReportName`.pdf". Here `Date`
 is in the format _YYYYMMDD_ and `ReportName` is any alphanumeric identifier. The
-advantages of naming this way is that sorting reports is easy and ability to
+advantages of naming this way is that sorting reports is easy along with the ability to
 quickly identify the report by the date it was generated.
